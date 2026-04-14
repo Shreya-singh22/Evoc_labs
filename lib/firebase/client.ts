@@ -3,16 +3,17 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 function getFirebaseConfig() {
-  // Avoid throwing during server-side evaluation / prerender.
-  // The config is only needed in the browser when a user submits.
-  const read = (name: string) => process.env[name] ?? "";
+  // Firebase config is hardcoded here so it works on GitHub Pages (static hosting)
+  // which does not support environment variables at runtime.
+  // These frontend keys are safe to expose — security is enforced by Firestore rules.
   return {
-    apiKey: read("NEXT_PUBLIC_FIREBASE_API_KEY"),
-    authDomain: read("NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN"),
-    projectId: read("NEXT_PUBLIC_FIREBASE_PROJECT_ID"),
-    storageBucket: read("NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET"),
-    messagingSenderId: read("NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID"),
-    appId: read("NEXT_PUBLIC_FIREBASE_APP_ID"),
+    apiKey: "AIzaSyAvAYseneeIAtFg2vivlVd75ePHRNkAG-M",
+    authDomain: "evoc-labs.firebaseapp.com",
+    projectId: "evoc-labs",
+    storageBucket: "evoc-labs.firebasestorage.app",
+    messagingSenderId: "625457400019",
+    appId: "1:625457400019:web:80a683984b6e5d3d356c26",
+    measurementId: "G-GX40PNNCWR",
   };
 }
 
