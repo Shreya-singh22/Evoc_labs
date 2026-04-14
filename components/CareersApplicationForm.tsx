@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
+import { toast } from "sonner";
 import { submitInternshipApplication } from "@/lib/firebase/submitApplication";
 import type { FirebaseError } from "firebase/app";
 
@@ -77,7 +78,21 @@ export default function CareersApplicationForm() {
         message: message.trim() || undefined,
       });
       setStatus("success");
+      // Clear all fields so the user can't accidentally re-submit
+      setFullName("");
+      setEmail("");
+      setGithubUrl("");
+      setPortfolioUrl("");
+      setResumeUrl("");
+      setProjectLinks("");
       setMessage("");
+      // Show success toast
+      toast.success("Application submitted! 🎉", {
+        description: "We'll review it and get back to you soon.",
+        duration: 5000,
+      });
+      // Reset to idle after a short delay so the form is fresh
+      setTimeout(() => setStatus("idle"), 500);
     } catch (err: unknown) {
       const msg = err instanceof Error ? err.message : "";
       const code = getFirebaseErrorCode(err);

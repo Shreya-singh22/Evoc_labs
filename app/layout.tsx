@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import {
   Plus_Jakarta_Sans,
   Playfair_Display,
@@ -206,6 +207,13 @@ export default function RootLayout({
         className={`${plusJakartaSans.variable} ${playfairDisplay.variable} ${oswald.variable} ${geistMono.variable} antialiased bg-background text-text-main font-sans selection:bg-white/10 selection:text-white`}
       >
         {children}
+        <Toaster
+          position="top-center"
+          richColors
+          toastOptions={{
+            style: { background: "#0f0e13", border: "1px solid rgba(255,255,255,0.1)", color: "#fff" },
+          }}
+        />
       </body>
     </html>
   );
